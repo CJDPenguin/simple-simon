@@ -53,32 +53,27 @@
         <div id="green">Green</div>
     </section>
     <button id="start">Start</button>
+    <button id="round">Round 1</button>
 </main>
 
 <script>
 
-    let pattern = [];
+    let pattern = ["red", "red", "green"];
     let input = [];
+    let round = 1;
 
     function check() {
         let i = 0;
-        let check = false;
+        let checkVal = false;
         for (let el of input) {
-            if (el === pattern[i]) {
-                check = true;
-                i++;
-            }
-            else {
-                check = false;
-                console.log("pattern:" + pattern);
-                console.log("input:" + input);
-                pattern = [];
-                input = [];
-                i = 0;
-                break
+            if(el === pattern [i]){
+                checkVal = true;
+                i++
+            } else {
+                checkVal = false;
             }
         }
-        return check;
+        return checkVal;
     }
 
     function randomColor () {
