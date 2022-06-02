@@ -6,8 +6,121 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simon's Hell</title>
+    <style>
+
+        section {
+            height: 300px;
+            width: 300px;
+            margin: auto;
+            display: grid;
+            grid-template: 1fr 1fr / 1fr 1fr
+        }
+
+        div{
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            margin: 5vw;
+            text-align: center;
+            border: darkslategrey solid 3px;
+        }
+
+        #red {
+            background: red;
+        }
+
+        #yellow {
+            background: yellow;
+        }
+
+        #blue {
+            background: blue;
+        }
+
+        #green {
+            background: green;
+        }
+
+    </style>
 </head>
 <body>
+
+<main id="viewport">
+    <section id="gameboard">
+        <div id="red">Red</div>
+        <div id="yellow">Yellow</div>
+        <div id="blue">Blue</div>
+        <div id="green">Green</div>
+    </section>
+    <button id="start">Start</button>
+</main>
+
+<script>
+
+    let pattern = [];
+    let input = [];
+
+    function check() {
+        let i = 0;
+        let check = false;
+        for (let el of input) {
+            if (el === pattern[i]) {
+                check = true;
+                i++;
+            }
+            else {
+                check = false;
+                console.log("pattern:" + pattern);
+                console.log("input:" + input);
+                pattern = [];
+                input = [];
+                i = 0;
+                break
+            }
+        }
+        return check;
+    }
+
+    function randomColor () {
+        let rand = Math.floor(Math.random() * 4 + 1)
+        let color = ''
+        if (rand === 1) {
+            color = "red";
+        } else if (rand === 2) {
+            color = "yellow";
+        } else if (rand === 3) {
+            color = "blue";
+        } else if (rand === 4) {
+            color = "green";
+        }
+        pattern.push(color);
+    }
+
+    document.querySelector("#start").addEventListener('click', () => {
+        randomColor();
+        console.log(pattern)
+    });
+
+    document.querySelector("#red").addEventListener('click', () => {
+        input.push("red");
+        console.log(check());
+    })
+    document.querySelector("#yellow").addEventListener('click', () => {
+        input.push("yellow");
+        console.log(check());
+    });
+    document.querySelector("#blue").addEventListener('click', () => {
+        input.push("blue");
+        console.log(check());
+    });
+        document.querySelector("#green").addEventListener('click', () => {
+            input.push("green");
+            console.log(check());
+        });
+
+
+
+</script>
 
 </body>
 </html>
